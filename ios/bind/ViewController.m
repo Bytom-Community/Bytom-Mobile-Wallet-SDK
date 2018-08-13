@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 #import "ViewController.h"
-#import "Hello/hello.h"  // Gomobile bind generated framework
+#import "Wallet/Wallet.h"  // Gomobile bind generated framework
 
 @interface ViewController ()
 @end
@@ -14,7 +14,8 @@
 
 - (void)loadView {
     [super loadView];
-    textLabel.text = HelloGreetings(@"iOS and Gopher");
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    textLabel.text = WalletCreateWallet(docPath,@"marshell",@"123456");
 }
 
 @end

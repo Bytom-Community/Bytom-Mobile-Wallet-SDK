@@ -9,8 +9,9 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        applicationId "org.golang.example.android"
+        applicationId "io.bytom.community"
         minSdkVersion 15
+        //noinspection OldTargetApi
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -25,5 +26,5 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation project(':hello')
+    implementation project(':wallet')
 }

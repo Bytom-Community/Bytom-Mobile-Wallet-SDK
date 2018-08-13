@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52F666E3211D64E0004726D4 /* Hello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F666E2211D64DF004726D4 /* Hello.framework */; };
+		52F7D5AC2121ACD4009D4E3E /* Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F7D5AB2121ACD4009D4E3E /* Wallet.framework */; };
 		EBA3E2861B681AFA00018449 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3E2851B681AFA00018449 /* main.m */; };
 		EBA3E2891B681AFA00018449 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3E2881B681AFA00018449 /* AppDelegate.m */; };
 		EBA3E28C1B681AFA00018449 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3E28B1B681AFA00018449 /* ViewController.m */; };
@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		52F666E2211D64DF004726D4 /* Hello.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hello.framework; sourceTree = "<group>"; };
+		52F7D5AB2121ACD4009D4E3E /* Wallet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Wallet.framework; sourceTree = "<group>"; };
 		EBA3E2801B681AFA00018449 /* bind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA3E2841B681AFA00018449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBA3E2851B681AFA00018449 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52F666E3211D64E0004726D4 /* Hello.framework in Frameworks */,
+				52F7D5AC2121ACD4009D4E3E /* Wallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +43,7 @@
 		52F666E1211D64DF004726D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				52F666E2211D64DF004726D4 /* Hello.framework */,
+				52F7D5AB2121ACD4009D4E3E /* Wallet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,7 +285,7 @@
 				);
 				INFOPLIST_FILE = bind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.bytom.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = io.bytom.community;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -305,7 +305,7 @@
 				);
 				INFOPLIST_FILE = bind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.bytom.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = io.bytom.community;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
