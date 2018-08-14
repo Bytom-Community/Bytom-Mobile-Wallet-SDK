@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
         String keystorePath = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString();
         Log.d("dataDir", "Environment.getDataDirectory()=:" + keystorePath);
 //      Call Go function.
-        String publicKey = Wallet.createWallet(keystorePath, "marshall", "123456");
+        String publicKey = Wallet.createAccount(keystorePath, "marshall", "123456");
         mTextView.setText(publicKey);
     }
 }
