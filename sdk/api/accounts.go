@@ -93,16 +93,10 @@ func (a SortByIndex) Len() int           { return len(a) }
 func (a SortByIndex) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a SortByIndex) Less(i, j int) bool { return a[i].KeyIndex < a[j].KeyIndex }
 
-func (a *API) listAddresses(ctx context.Context, ins struct {
-	AccountID    string `json:"account_id"`
-	AccountAlias string `json:"account_alias"`
-	From         uint   `json:"from"`
-	Count        uint   `json:"count"`
-}) Response {
-	accountID := ins.AccountID
+func (a *API) ListAddresses(accountID string, accountAlias string, from uint, count uint, ) Response {
 	var target *account.Account
-	if ins.AccountAlias != "" {
-		acc, err := a.Wallet.AccountMgr.FindByAlias(ins.AccountAlias)
+	if accountAlias != "" {
+		acc, err := a.Wallet.AccountMgr.FindByAlias(accountAlias)
 		if err != nil {
 			return NewErrorResponse(err)
 		}
@@ -137,6 +131,6 @@ func (a *API) listAddresses(ctx context.Context, ins struct {
 
 	// sort AddressResp by KeyIndex
 	sort.Sort(SortByIndex(addresses))
-	start, end := getPageRange(len(addresses), ins.From, ins.Count)
+	start, end := getPageRange(len(addresses), from, count)
 	return NewSuccessResponse(addresses[start:end])
 }

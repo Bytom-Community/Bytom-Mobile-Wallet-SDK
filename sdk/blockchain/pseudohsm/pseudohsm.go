@@ -10,6 +10,7 @@ import (
 	"github.com/bytom-community/mobile/sdk/crypto/ed25519/chainkd"
 	"github.com/bytom-community/mobile/sdk/errors"
 	"github.com/pborman/uuid"
+	"github.com/tendermint/tmlibs/common"
 )
 
 // pre-define errors for supporting bytom errorFormatter
@@ -37,13 +38,16 @@ type XPub struct {
 }
 
 // New method for HSM struct
-func New(keypath string) (*HSM, error) {
-	keydir, _ := filepath.Abs(keypath)
+func New(keyPath string) *HSM {
+	keyDir, err := filepath.Abs(keyPath)
+	if err != nil {
+		common.Exit(common.Fmt("initialize HSM failed: %v", err))
+	}
 	return &HSM{
-		keyStore: &keyStorePassphrase{keydir, LightScryptN, LightScryptP},
-		cache:    newKeyCache(keydir),
+		keyStore: &keyStorePassphrase{keyDir, LightScryptN, LightScryptP},
+		cache:    newKeyCache(keyDir),
 		//kdCache:  make(map[chainkd.XPub]chainkd.XPrv),
-	}, nil
+	}
 }
 
 // XCreate produces a new random xprv and stores it in the db.

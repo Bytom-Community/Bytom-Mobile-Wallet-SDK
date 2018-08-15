@@ -1,8 +1,6 @@
 package api
 
 import (
-	"context"
-
 	"github.com/bytom-community/mobile/sdk/account"
 	"github.com/bytom-community/mobile/sdk/asset"
 	"github.com/bytom-community/mobile/sdk/blockchain/pseudohsm"
@@ -21,7 +19,7 @@ type WalletImage struct {
 	KeyImages    *pseudohsm.KeyImage `json:"key_images"`
 }
 
-func (a *API) restoreWalletImage(ctx context.Context, image WalletImage) Response {
+func (a *API) RestoreWalletImage(image WalletImage) Response {
 	if err := a.Wallet.Hsm.Restore(image.KeyImages); err != nil {
 		return NewErrorResponse(errors.Wrap(err, "restore key images"))
 	}
@@ -34,7 +32,7 @@ func (a *API) restoreWalletImage(ctx context.Context, image WalletImage) Respons
 	return NewSuccessResponse(nil)
 }
 
-func (a *API) backupWalletImage() Response {
+func (a *API) BackupWalletImage() Response {
 	keyImages, err := a.Wallet.Hsm.Backup()
 	if err != nil {
 		return NewErrorResponse(errors.Wrap(err, "backup key images"))

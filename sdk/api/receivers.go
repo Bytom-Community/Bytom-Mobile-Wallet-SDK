@@ -1,18 +1,12 @@
 package api
 
 import (
-	"context"
-
 	"github.com/bytom-community/mobile/sdk/blockchain/txbuilder"
 )
 
-func (a *API) createAccountReceiver(ctx context.Context, ins struct {
-	AccountID    string `json:"account_id"`
-	AccountAlias string `json:"account_alias"`
-}) Response {
-	accountID := ins.AccountID
-	if ins.AccountAlias != "" {
-		account, err := a.Wallet.AccountMgr.FindByAlias(ins.AccountAlias)
+func (a *API) CreateAccountReceiver(accountID string, accountAlias string) Response {
+	if accountAlias != "" {
+		account, err := a.Wallet.AccountMgr.FindByAlias(accountAlias)
 		if err != nil {
 			return NewErrorResponse(err)
 		}

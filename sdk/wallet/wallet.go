@@ -17,12 +17,12 @@ type Wallet struct {
 }
 
 //NewWallet return a new wallet instance
-func NewWallet(walletDB db.DB, account *account.Manager, asset *asset.Registry, hsm *pseudohsm.HSM) (*Wallet, error) {
+func NewWallet(walletDB db.DB, account *account.Manager, asset *asset.Registry, hsm *pseudohsm.HSM) *Wallet {
 	w := &Wallet{
 		DB:         walletDB,
 		AccountMgr: account,
 		AssetReg:   asset,
 		Hsm:        hsm,
 	}
-	return w, nil
+	return w
 }

@@ -1,7 +1,6 @@
 package api
 
 import (
-	"context"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/bytom-community/mobile/sdk/account"
@@ -9,10 +8,8 @@ import (
 )
 
 // POST /list-accounts
-func (a *API) listAccounts(ctx context.Context, filter struct {
-	ID string `json:"id"`
-}) Response {
-	accounts, err := a.Wallet.AccountMgr.ListAccounts(filter.ID)
+func (a *API) ListAccounts(ID string) Response {
+	accounts, err := a.Wallet.AccountMgr.ListAccounts(ID)
 	if err != nil {
 		log.Errorf("listAccounts: %v", err)
 		return NewErrorResponse(err)

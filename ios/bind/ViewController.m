@@ -15,7 +15,8 @@
 - (void)loadView {
     [super loadView];
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    textLabel.text = WalletCreateWallet(docPath,@"marshell",@"123456");
+    WalletInitWallet(docPath);
+    textLabel.text = WalletCreateKey(@"kevin",@"123456");
 }
 
 @end

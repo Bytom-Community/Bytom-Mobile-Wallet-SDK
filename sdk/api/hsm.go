@@ -9,14 +9,6 @@ import (
 	"github.com/bytom-community/mobile/sdk/crypto/ed25519/chainkd"
 )
 
-/*func (a *API) PseudohsmCreateKey(alias string, password string) Response {
-	xpub, err := a.Wallet.Hsm.XCreate(alias, password)
-	if err != nil {
-		return NewErrorResponse(err)
-	}
-	return NewSuccessResponse(xpub)
-}*/
-
 func (a *API) PseudohsmCreateKey(alias string, password string) Response {
 	xpub, err := a.Wallet.Hsm.XCreate(alias, password)
 	if err != nil {
@@ -25,7 +17,7 @@ func (a *API) PseudohsmCreateKey(alias string, password string) Response {
 	return NewSuccessResponse(xpub)
 }
 
-func (a *API) pseudohsmListKeys(ctx context.Context) Response {
+func (a *API) PseudohsmListKeys() Response {
 	return NewSuccessResponse(a.Wallet.Hsm.ListKeys())
 }
 
@@ -44,16 +36,13 @@ type signResp struct {
 	SignComplete bool                `json:"sign_complete"`
 }
 
-func (a *API) pseudohsmSignTemplates(ctx context.Context, x struct {
-	Password string             `json:"password"`
-	Txs      txbuilder.Template `json:"transaction"`
-}) Response {
-	if err := txbuilder.Sign(ctx, &x.Txs, x.Password, a.pseudohsmSignTemplate); err != nil {
+func (a *API) PseudohsmSignTemplates(ctx context.Context, password string, txs txbuilder.Template) Response {
+	if err := txbuilder.Sign(ctx, &txs, password, a.pseudohsmSignTemplate); err != nil {
 		log.WithField("build err", err).Error("fail on sign transaction.")
 		return NewErrorResponse(err)
 	}
 	log.Info("Sign Transaction complete.")
-	return NewSuccessResponse(&signResp{Tx: &x.Txs, SignComplete: txbuilder.SignProgress(&x.Txs)})
+	return NewSuccessResponse(&signResp{Tx: &txs, SignComplete: txbuilder.SignProgress(&txs)})
 }
 
 func (a *API) pseudohsmSignTemplate(ctx context.Context, xpub chainkd.XPub, path [][]byte, data [32]byte, password string) ([]byte, error) {
@@ -65,13 +54,9 @@ type ResetPasswordResp struct {
 	Changed bool `json:"changed"`
 }
 
-func (a *API) pseudohsmResetPassword(ctx context.Context, ins struct {
-	XPub        chainkd.XPub `json:"xpub"`
-	OldPassword string       `json:"old_password"`
-	NewPassword string       `json:"new_password"`
-}) Response {
+func (a *API) PseudohsmResetPassword(xPub chainkd.XPub, oldPassword string, newPassword string) Response {
 	resp := &ResetPasswordResp{Changed: false}
-	if err := a.Wallet.Hsm.ResetPassword(ins.XPub, ins.OldPassword, ins.NewPassword); err != nil {
+	if err := a.Wallet.Hsm.ResetPassword(xPub, oldPassword, newPassword); err != nil {
 		return NewSuccessResponse(resp)
 	}
 	resp.Changed = true
