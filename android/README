@@ -1,4 +1,22 @@
-Go bind android app example
+1. Use gomobile bind to bind the github.com/bytom-community/mobile/sdk/ package.
+   The following command will create wallet.aar and wallet-source.jar in the current
+   directory.
 
-Set the GOPATH, GO, GOMOBILE variables in hello/build.gradle
-and import this project in Android Studio.
+  $ gomobile bind -target=android -ldflags=-s github.com/bytom-community/mobile/sdk/
+
+2. Copy wallet.aar and wallet-source.jar to your android project app/libs folder.
+   Add follow scripts to build.gradle file in app folder.
+   ```
+   android {
+       repositories {
+           flatDir { dirs 'libs' }
+       }
+   }
+   ```
+   ```
+   dependencies {
+       implementation fileTree(include: ['*.jar'], dir: 'libs')
+       implementation(name: 'wallet', ext: 'aar')
+   }
+   ```
+3. Build.
