@@ -23,13 +23,3 @@ func Put(b *bytes.Buffer) {
 	b.Reset()
 	pool.Put(b)
 }
-
-// CopyBytes returns a copy of the bytes contained in the buffer.
-// This slice is safe from updates in the underlying buffer,
-// allowing the buffer to be placed back in the free list.
-func CopyBytes(buf *bytes.Buffer) []byte {
-	b := buf.Bytes()
-	b2 := make([]byte, len(b))
-	copy(b2, b)
-	return b2
-}

@@ -15,26 +15,6 @@ var (
 	ErrDefault = errors.New("Bytom API Error")
 )
 
-func isTemporary(info httperror.Info, err error) bool {
-	switch info.ChainCode {
-	case "BTM000": // internal server error
-		return true
-	case "BTM001": // request timed out
-		return true
-	case "BTM761": // outputs currently reserved
-		return true
-	case "BTM706": // 1 or more action errors
-		errs := errors.Data(err)["actions"].([]httperror.Response)
-		temp := true
-		for _, actionErr := range errs {
-			temp = temp && isTemporary(actionErr.Info, nil)
-		}
-		return temp
-	default:
-		return false
-	}
-}
-
 var respErrFormatter = map[error]httperror.Info{
 	ErrDefault: {500, "BTM000", "Bytom API Error"},
 

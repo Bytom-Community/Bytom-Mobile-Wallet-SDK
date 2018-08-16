@@ -1,8 +1,6 @@
 package txbuilder
 
 import (
-	"context"
-
 	chainjson "github.com/bytom-community/mobile/sdk/encoding/json"
 	"github.com/bytom-community/mobile/sdk/protocol/bc"
 	"github.com/bytom-community/mobile/sdk/protocol/bc/types"
@@ -24,11 +22,6 @@ type Template struct {
 // Hash return sign hash
 func (t *Template) Hash(idx uint32) bc.Hash {
 	return t.Transaction.SigHash(idx)
-}
-
-// Action is a interface
-type Action interface {
-	Build(context.Context, *TemplateBuilder) error
 }
 
 // Receiver encapsulates information about where to send assets.

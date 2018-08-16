@@ -9,7 +9,6 @@ import (
 	chainjson "github.com/bytom-community/mobile/sdk/encoding/json"
 )
 
-// TODO(bobg): most of the code here is duplicated from
 // signature_witness.go and needs refactoring.
 
 // RawTxSigWitness is like SignatureWitness but doesn't involve

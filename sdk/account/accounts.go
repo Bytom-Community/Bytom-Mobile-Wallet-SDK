@@ -11,7 +11,6 @@ import (
 	dbm "github.com/tendermint/tmlibs/db"
 
 	"github.com/bytom-community/mobile/sdk/blockchain/signers"
-	"github.com/bytom-community/mobile/sdk/blockchain/txbuilder"
 	"github.com/bytom-community/mobile/sdk/common"
 	"github.com/bytom-community/mobile/sdk/consensus"
 	"github.com/bytom-community/mobile/sdk/crypto"
@@ -85,7 +84,6 @@ type Manager struct {
 	aliasCache *lru.Cache
 
 	delayedACPsMu sync.Mutex
-	delayedACPs   map[*txbuilder.TemplateBuilder][]*CtrlProgram
 
 	accIndexMu sync.Mutex
 	accountMu  sync.Mutex
@@ -94,10 +92,9 @@ type Manager struct {
 // NewManager creates a new account manager
 func NewManager(walletDB dbm.DB) *Manager {
 	return &Manager{
-		db:          walletDB,
-		cache:       lru.New(maxAccountCache),
-		aliasCache:  lru.New(maxAccountCache),
-		delayedACPs: make(map[*txbuilder.TemplateBuilder][]*CtrlProgram),
+		db:         walletDB,
+		cache:      lru.New(maxAccountCache),
+		aliasCache: lru.New(maxAccountCache),
 	}
 }
 

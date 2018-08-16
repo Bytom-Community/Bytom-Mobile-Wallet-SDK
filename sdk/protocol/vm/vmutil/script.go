@@ -9,7 +9,6 @@ import (
 // pre-define errors
 var (
 	ErrBadValue       = errors.New("bad value")
-	ErrMultisigFormat = errors.New("bad multisig program format")
 )
 
 // IsUnspendable checks if a contorl program is absolute failed
