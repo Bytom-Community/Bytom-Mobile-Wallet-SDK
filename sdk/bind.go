@@ -71,14 +71,14 @@ func BackupWallet() string {
 
 func RestoreWallet(walletImage string) string {
 	var image aApi.WalletImage
-	json.Unmarshal([]byte(walletImage), image)
+	json.Unmarshal([]byte(walletImage), &image)
 	b, _ := json.Marshal(api.RestoreWalletImage(image))
 	return string(b)
 }
 
 func SignTransaction(transaction string, password string) string {
 	var tx txbuilder.Template
-	json.Unmarshal([]byte(transaction), tx)
+	json.Unmarshal([]byte(transaction), &tx)
 	b, _ := json.Marshal(api.PseudohsmSignTemplates(nil, password, tx))
 	return string(b)
 }
